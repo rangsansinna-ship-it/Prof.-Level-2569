@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>โครงการพัฒนาศักยภาพการปฏิบัติงาน ระดับชำนาญการ ปีงบประมาณ 2569</title>
+<link rel="icon" type="image/png" href="logo.png">
+
+<!-- Google Fonts: Prompt (display) + Sarabun (body) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #F4F9FD;
+  --bg-soft: #EAF3FB;
+  --surface: #FFFFFF;
+  --border: #D9E6F2;
+  --primary: #3B82C4;
+  --primary-deep: #1E5A8E;
+  --primary-soft: #E3F0FB;
+  --accent: #C0392B;        /* matches logo red — used very sparingly */
+  --text: #0F2438;
+  --text-muted: #5C7790;
+  --text-soft: #8AA0B5;
+  --shadow-sm: 0 1px 2px rgba(30, 90, 142, 0.04);
+  --shadow-md: 0 4px 12px rgba(30, 90, 142, 0.08);
+  --shadow-lg: 0 12px 32px rgba(30, 90, 142, 0.12);
+  --radius: 14px;
+  --radius-sm: 8px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Sarabun', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== Ambient background ===== */
+body::before {
+  content: '';
+  position: fixed;
+  top: -200px;
+  right: -200px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(59, 130, 196, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+body::after {
+  content: '';
+  position: fixed;
+  bottom: -300px;
+  left: -200px;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(59, 130, 196, 0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wrapper { position: relative; z-index: 1; }
+
+/* ===== Top bar ===== */
+.topbar {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.85);
+}
+.topbar-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.topbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+.topbar-logo img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+.topbar-logo .title-th {
+  font-family: 'Prompt', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.2;
+}
+.topbar-logo .subtitle-th {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.2;
+}
+.topbar-meta {
+  font-family: 'Prompt', sans-serif;
+  font-size: 13px;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+}
+
+/* ===== Hero ===== */
+.hero {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 64px 24px 48px;
+  text-align: center;
+}
+.hero-logo {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 28px;
+  filter: drop-shadow(0 8px 20px rgba(192, 57, 43, 0.18));
+  animation: gentle-float 6s ease-in-out infinite;
+}
+@keyframes gentle-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.hero-eyebrow {
+  display: inline-block;
+  font-family: 'Prompt', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--primary-deep);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  background: var(--primary-soft);
+  border-radius: 100px;
+  margin-bottom: 20px;
+}
+.hero-title {
+  font-family: 'Prompt', sans-serif;
+  font-weight: 700;
+  font-size: clamp(28px, 4.5vw, 44px);
+  line-height: 1.2;
+  color: var(--text);
+  margin-bottom: 16px;
+  letter-spacing: -0.5px;
+}
+.hero-title .accent {
+  color: var(--primary-deep);
+}
+.hero-subtitle {
+  font-size: clamp(15px, 2vw, 17px);
+  color: var(--text-muted);
+  max-width: 680px;
+  margin: 0 auto 32px;
+  font-weight: 400;
+}
+.hero-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 0 auto;
+  width: fit-content;
+}
+.hero-divider .line {
+  width: 60px;
+  height: 1px;
+  background: var(--border);
+}
+.hero-divider .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--primary);
+}
+
+/* ===== Section label ===== */
+.section-label {
+  max-width: 1180px;
+  margin: 24px auto 28px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.section-label .label-text {
+  font-family: 'Prompt', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.section-label .label-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, var(--border), transparent);
+}
+
+/* ===== Cards grid ===== */
+.grid {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px 32px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 26px;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card:hover {
+  border-color: var(--primary);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+.card:hover::before {
+  transform: scaleX(1);
+}
+.card:hover .card-icon {
+  background: var(--primary);
+  color: var(--surface);
+  transform: scale(1.05);
+}
+.card:hover .card-arrow {
+  transform: translateX(4px);
+  color: var(--primary);
+}
+
+.card-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: var(--primary-soft);
+  color: var(--primary-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.28s ease;
+}
+.card-icon svg {
+  width: 26px;
+  height: 26px;
+  stroke-width: 1.8;
+}
+
+.card-title {
+  font-family: 'Prompt', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.3;
+}
+.card-desc {
+  font-size: 14px;
+  color: var(--text-muted);
+  flex-grow: 1;
+  line-height: 1.55;
+}
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 6px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+.card-action {
+  font-family: 'Prompt', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.3px;
+}
+.card-arrow {
+  color: var(--text-soft);
+  transition: all 0.28s ease;
+}
+
+/* CTA card — final card stands out */
+.card.cta {
+  background: linear-gradient(135deg, var(--primary-deep) 0%, var(--primary) 100%);
+  border-color: var(--primary-deep);
+  color: var(--surface);
+}
+.card.cta::before { display: none; }
+.card.cta .card-icon {
+  background: rgba(255, 255, 255, 0.18);
+  color: var(--surface);
+}
+.card.cta .card-title { color: var(--surface); }
+.card.cta .card-desc { color: rgba(255, 255, 255, 0.85); }
+.card.cta .card-footer { border-top-color: rgba(255, 255, 255, 0.2); }
+.card.cta .card-action { color: rgba(255, 255, 255, 0.95); font-weight: 600; }
+.card.cta .card-arrow { color: rgba(255, 255, 255, 0.85); }
+.card.cta:hover {
+  border-color: var(--primary-deep);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(30, 90, 142, 0.3);
+}
+.card.cta:hover .card-icon {
+  background: var(--surface);
+  color: var(--primary-deep);
+}
+.card.cta:hover .card-arrow { color: var(--surface); }
+
+/* ===== Footer ===== */
+.footer {
+  max-width: 1180px;
+  margin: 48px auto 0;
+  padding: 32px 24px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.footer-brand img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.footer-meta {
+  font-family: 'Prompt', sans-serif;
+  letter-spacing: 0.5px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 980px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .grid { grid-template-columns: 1fr; }
+  .hero { padding: 40px 20px 32px; }
+  .hero-logo { width: 96px; height: 96px; }
+  .topbar-logo .subtitle-th { display: none; }
+  .topbar-meta { display: none; }
+  .footer { flex-direction: column; text-align: center; }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+.card:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- Top bar -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="#" class="topbar-logo">
+        <img src="logo.png" alt="ตราสัญลักษณ์ ชก.151">
+        <div>
+          <div class="title-th">ชก. 151</div>
+          <div class="subtitle-th">หลักสูตรชำนาญการ รุ่นที่ 151</div>
+        </div>
+      </a>
+      <div class="topbar-meta">ปีงบประมาณ 2569</div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <img src="logo.png" alt="ตราสัญลักษณ์โครงการ" class="hero-logo">
+    <div class="hero-eyebrow">โครงการพัฒนาศักยภาพการปฏิบัติงาน</div>
+    <h1 class="hero-title">
+      หลักสูตร<span class="accent">ชำนาญการ</span><br>
+      ปีงบประมาณ <span class="accent">2569</span>
+    </h1>
+    <p class="hero-subtitle">
+      ศูนย์รวมเอกสาร สื่อการเรียนรู้ และช่องทางการส่งใบประกาศ<br>
+      สำหรับผู้เข้าร่วมโครงการอบรม
+    </p>
+    <div class="hero-divider">
+      <span class="line"></span>
+      <span class="dot"></span>
+      <span class="line"></span>
+    </div>
+  </section>
+
+  <!-- Section label -->
+  <div class="section-label">
+    <span class="label-text">ทรัพยากรการเรียนรู้</span>
+    <span class="label-line"></span>
+  </div>
+
+  <!-- Grid -->
+  <main class="grid">
+
+    <!-- 1. รายละเอียดโครงการ -->
+    <a href="https://drive.google.com/drive/folders/12ck9Q8Y1eGAfOU4EDxSkS8e4emAxHPWI?usp=drive_link"
+       target="_blank" rel="noopener" class="card">
+      <div class="card-icon">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+        </svg>
+      </div>
+      <h2 class="card-title">รายละเอียดโครงการ</h2>
+      <p class="card-desc">ข้อมูลภาพรวม วัตถุประสงค์ กำหนดการ และโครงสร้างหลักสูตรอบรม</p>
+      <div class="card-footer">
+        <span class="card-action">เปิดดูเอกสาร</span>
+        <svg class="card-arrow" width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+        </svg>
+      </div>
+    </a>
+
+    <!-- 2. เอกสารประกอบการบรรยาย -->
+    <a href="https://drive.google.com/drive/folders/1QpdTCU_Y9vioW-jz1LyIzwkGeJ54NnrI?usp=drive_link"
+       target="_blank" rel="noopener" class="card">
+      <div class="card-icon">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+        </svg>
+      </div>
+      <h2 class="card-title">เอกสารประกอบการบรรยาย</h2>
+      <p class="card-desc">สไลด์ เอกสารแจก และไฟล์ประกอบการเรียนรู้จากวิทยากร</p>
+      <div class="card-footer">
+        <span class="card-action">เปิดดูเอกสาร</span>
+        <svg class="card-arrow" width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+        </svg>
+      </div>
+    </a>
+
+    <!-- 3. รูปภาพภายในโครงการ -->
+    <a href="https://drive.google.com/drive/folders/1KfhhIWhKm6kQAhZc591YIezVgYh7-T0s?usp=drive_link"
+       target="_blank" rel="noopener" class="card">
+      <div class="card-icon">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+        </svg>
+      </div>
+      <h2 class="card-title">รูปภาพภายในโครงการ</h2>
+      <p class="card-desc">คลังภาพบรรยากาศ กิจกรรม และความทรงจำตลอดการอบรม</p>
+      <div class="card-footer">
+        <span class="card-action">ดูคลังรูปภาพ</span>
+        <svg class="card-arrow" width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+        </svg>
+      </div>
+    </a>
+
+    <!-- 4. Infographic -->
+    <a href="https://drive.google.com/drive/folders/1XXuZrk4wo_mpWfFk3jdfkbwVUpY8a4Gl?usp=drive_link"
+       target="_blank" rel="noopener" class="card">
+      <div class="card-icon">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+        </svg>
+      </div>
+      <h2 class="card-title">Infographic สรุปผลฯ</h2>
+      <p class="card-desc">สรุปผลการเรียนรู้และเนื้อหาสำคัญในรูปแบบภาพที่เข้าใจง่าย</p>
+      <div class="card-footer">
+        <span class="card-action">ดู Infographic</span>
+        <svg class="card-arrow" width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+        </svg>
+      </div>
+    </a>
+
+    <!-- 5. แบบฟอร์มต่างๆ -->
+    <a href="https://drive.google.com/drive/folders/1zotY6KlRPxH_3lMq__5-Di1UTWNJOULc?usp=drive_link"
+       target="_blank" rel="noopener" class="card">
+      <div class="card-icon">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+        </svg>
+      </div>
+      <h2 class="card-title">แบบฟอร์มต่างๆ</h2>
+      <p class="card-desc">รวมแบบฟอร์มที่จำเป็นสำหรับการอบรม ดาวน์โหลดไปใช้งานได้ทันที</p>
+      <div class="card-footer">
+        <span class="card-action">ดาวน์โหลดฟอร์ม</span>
+        <svg class="card-arrow" width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+        </svg>
+      </div>
+    </a>
+
+    <!-- 6. ส่งใบประกาศ (CTA) -->
+    <a href="https://forms.gle/tXWoyis2pDFB7KCF9"
+       target="_blank" rel="noopener" class="card cta">
+      <div class="card-icon">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+        </svg>
+      </div>
+      <h2 class="card-title">ส่งใบประกาศ e-Learning</h2>
+      <p class="card-desc">อัปโหลดใบประกาศนียบัตรหลังเรียนจบหลักสูตรออนไลน์</p>
+      <div class="card-footer">
+        <span class="card-action">ส่งใบประกาศ</span>
+        <svg class="card-arrow" width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+        </svg>
+      </div>
+    </a>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-brand">
+      <img src="logo.png" alt="">
+      <span>หลักสูตรชำนาญการ รุ่นที่ 151</span>
+    </div>
+    <div class="footer-meta">ปีงบประมาณ 2569 · ผู้เข้าอบรม 150 คน</div>
+  </footer>
+
+</div>
+</body>
+</html>
