@@ -1,29 +1,9 @@
 # เว็บไซต์ ชก.151 — คู่มือการใช้งาน
 
-## ไฟล์ที่มี
+## ไฟล์ที่มี (3 ไฟล์)
 - `index.html` — ไฟล์เว็บไซต์หลัก
-- `logo.png` — โลโก้ ชก. 151
-- `banner.png` — Banner ที่ออกแบบใน Canva (**ต้องเพิ่มเอง**)
-
----
-
-## 🎨 ขั้นตอนเพิ่ม Banner จาก Canva
-
-### 1. ออกแบบใน Canva
-- เข้า https://www.canva.com → สร้าง Design ใหม่
-- **ขนาด Custom:** `1920 × 500 px`
-- ออกแบบให้สวยตามที่ต้องการ
-
-### 2. Export
-- กดปุ่ม **Share** → **Download**
-- เลือก **File type: PNG**
-- บันทึกชื่อไฟล์ว่า **`banner.png`**
-
-### 3. นำมาวาง
-- วางไฟล์ `banner.png` ในโฟลเดอร์**เดียวกัน**กับ `index.html`
-- เปิดเว็บใหม่ — Banner จะปรากฏอัตโนมัติ
-
-> **หากยังไม่มี banner.png** เว็บจะแสดง Placeholder บอกวิธีการ ไม่พังครับ
+- `logo.png` — โลโก้ ชก. 151 (ใช้ใน topbar)
+- `banner.jpg` — Banner หลัก (ออกแบบจาก Canva, optimized)
 
 ---
 
@@ -38,7 +18,7 @@
 
 ### 3. Upload ไฟล์
 - กด **Add file** → **Upload files**
-- ลากไฟล์ทั้งหมดมาวาง (`index.html`, `logo.png`, `banner.png`)
+- ลากไฟล์ทั้ง 3 ไฟล์มาวาง (`index.html`, `logo.png`, `banner.jpg`)
 - กด **Commit changes**
 
 ### 4. เปิด GitHub Pages
@@ -56,15 +36,26 @@
 ## ✏️ การแก้ไขทีหลัง
 
 ### เปลี่ยน Banner
-- ลบ `banner.png` เดิม → Upload ไฟล์ใหม่ชื่อ `banner.png`
+- ลบ `banner.jpg` เดิม → Upload ไฟล์ใหม่ชื่อ `banner.jpg`
+- ขนาดแนะนำ: 1920×640 px (อัตราส่วน 3:1)
 - รอ 1 นาที เว็บอัปเดตอัตโนมัติ
 
-### เปลี่ยนลิงก์ Google Drive
+### เปลี่ยนข้อความ/ลิงก์ Google Drive
 - เข้า Repository → กดไฟล์ `index.html` → กดดินสอ (Edit)
-- ค้นหา URL ที่ต้องการเปลี่ยน → แก้ไข → Commit
+- ค้นหาข้อความที่ต้องการเปลี่ยน → แก้ไข → Commit
 
 ---
 
 ## 🧪 ทดสอบในเครื่องก่อน
 
 ดับเบิลคลิก `index.html` ได้เลย — เปิดในเบราว์เซอร์เพื่อดูหน้าตา
+
+---
+
+## 📐 ดีไซน์ที่ทดสอบแล้ว
+- ✅ 1920×1080 (Desktop ขนาดใหญ่)
+- ✅ 1440×900 (Laptop ทั่วไป)
+- ✅ 1366×768 (Laptop เล็ก / Notebook ราชการ)
+- ✅ Mobile / Tablet (responsive อัตโนมัติ)
+
+เนื้อหาทั้งหมดพอดี 1 หน้าจอที่ Desktop/Laptop ไม่ต้อง scroll
