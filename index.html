@@ -27,8 +27,8 @@
   --text-soft: #8AA0B5;
   --shadow-sm: 0 1px 2px rgba(30, 90, 142, 0.04);
   --shadow-md: 0 4px 12px rgba(30, 90, 142, 0.08);
-  --shadow-lg: 0 12px 32px rgba(30, 90, 142, 0.12);
-  --radius: 14px;
+  --shadow-lg: 0 8px 24px rgba(30, 90, 142, 0.10);
+  --radius: 12px;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -38,93 +38,34 @@ body {
   font-family: 'Sarabun', sans-serif;
   background: var(--bg);
   color: var(--text);
-  line-height: 1.6;
-  min-height: 100vh;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
 
 /* ============================
-   TOPBAR
-   ============================ */
-.topbar {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  padding: 14px 0;
-  background: rgba(255, 255, 255, 0);
-  backdrop-filter: blur(0);
-  transition: all 0.3s ease;
-  border-bottom: 1px solid transparent;
-}
-.topbar.scrolled {
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(12px);
-  border-bottom-color: var(--border);
-  box-shadow: var(--shadow-sm);
-}
-.topbar-inner {
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 0 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.topbar-logo {
-  display: flex; align-items: center; gap: 12px;
-  text-decoration: none; color: inherit;
-}
-.topbar-logo img {
-  width: 36px; height: 36px;
-  object-fit: contain;
-  filter: drop-shadow(0 2px 4px rgba(192, 57, 43, 0.2));
-}
-.topbar-logo .title-th {
-  font-family: 'Prompt', sans-serif;
-  font-weight: 600;
-  font-size: 15px;
-  color: var(--text);
-  line-height: 1.2;
-}
-.topbar-logo .subtitle-th {
-  font-size: 12px;
-  color: var(--text-muted);
-  line-height: 1.2;
-}
-.topbar-meta {
-  font-family: 'Prompt', sans-serif;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-muted);
-  letter-spacing: 0.5px;
-  padding: 6px 14px;
-  background: var(--primary-soft);
-  border-radius: 100px;
-}
-
-/* ============================
-   BANNER SECTION
+   BANNER (compact)
    ============================ */
 .banner-section {
   position: relative;
   width: 100%;
-  background: linear-gradient(135deg, #1E5A8E 0%, #3B82C4 100%);
-  margin-top: 68px;
+  background: linear-gradient(180deg, #A8CDED 0%, #71A8EF 100%);
   overflow: hidden;
 }
-
 .banner-stack {
   position: relative;
   width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
   line-height: 0;
+  max-height: 240px;
+  overflow: hidden;
 }
-
 .banner-img {
   width: 100%;
-  height: auto;
-  max-height: 640px;
+  height: 240px;
   object-fit: cover;
+  object-position: center 37%;
   display: block;
   opacity: 0;
   transition: opacity 0.6s ease;
@@ -132,7 +73,7 @@ body {
 .banner-img.loaded { opacity: 1; }
 
 /* ============================
-   ANIMATED OVERLAY LAYER
+   ANIMATED OVERLAY
    ============================ */
 .banner-overlay {
   position: absolute;
@@ -144,13 +85,11 @@ body {
 }
 .banner-img.loaded ~ .banner-overlay { opacity: 1; }
 
-/* Sheen — light beam sweeping across */
+/* Sheen — light beam sweeping */
 .sheen {
   position: absolute;
-  top: 0;
-  left: -30%;
-  width: 30%;
-  height: 100%;
+  top: 0; left: -30%;
+  width: 30%; height: 100%;
   background: linear-gradient(
     100deg,
     transparent 30%,
@@ -169,12 +108,11 @@ body {
   100% { left: 130%; }
 }
 
-/* Flow lines — animated SVG paths */
+/* Flow lines */
 .flow-lines {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
+  width: 100%; height: 100%;
 }
 .flow-lines path {
   fill: none;
@@ -185,7 +123,6 @@ body {
   stroke: rgba(245, 215, 110, 0.55);
   stroke-width: 2;
   stroke-dasharray: 12 380;
-  stroke-dashoffset: 0;
   color: rgba(245, 215, 110, 0.6);
   animation: dash-flow-1 6s linear infinite;
 }
@@ -215,7 +152,7 @@ body {
 @keyframes dash-flow-3 { to { stroke-dashoffset: -286; } }
 @keyframes dash-flow-4 { to { stroke-dashoffset: -204; } }
 
-/* Floating golden particles */
+/* Particles */
 .particles {
   position: absolute;
   inset: 0;
@@ -223,8 +160,7 @@ body {
 }
 .particle {
   position: absolute;
-  width: 4px;
-  height: 4px;
+  width: 4px; height: 4px;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(245, 215, 110, 0.9), rgba(212, 175, 55, 0));
   bottom: -10px;
@@ -235,17 +171,16 @@ body {
   0%   { opacity: 0; transform: translateY(0) translateX(0); }
   10%  { opacity: 1; }
   90%  { opacity: 1; }
-  100% { opacity: 0; transform: translateY(-700px) translateX(var(--drift, 30px)); }
+  100% { opacity: 0; transform: translateY(-360px) translateX(var(--drift, 30px)); }
 }
 
-/* Pulsing glow points */
+/* Pulse dots */
 .pulse-dot {
   position: absolute;
-  width: 8px;
-  height: 8px;
+  width: 7px; height: 7px;
   border-radius: 50%;
   background: rgba(245, 215, 110, 0.9);
-  box-shadow: 0 0 12px rgba(245, 215, 110, 0.8);
+  box-shadow: 0 0 10px rgba(245, 215, 110, 0.8);
   animation: pulse 2.5s ease-in-out infinite;
 }
 .pulse-dot::after {
@@ -265,83 +200,58 @@ body {
   100% { transform: scale(2.5); opacity: 0; }
 }
 
-/* ============================
-   PLACEHOLDER (when banner.png missing)
-   ============================ */
+/* Placeholder (fallback) */
 .banner-placeholder {
   display: none;
-  min-height: 420px;
+  min-height: 280px;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 40px 24px;
+  align-items: center; justify-content: center;
+  padding: 30px 24px;
   text-align: center;
-  background:
-    radial-gradient(ellipse at 30% 30%, rgba(59, 130, 196, 0.15) 0%, transparent 60%),
-    radial-gradient(ellipse at 70% 70%, rgba(30, 90, 142, 0.10) 0%, transparent 50%);
   border: 2px dashed var(--primary-light);
 }
 .banner-placeholder.show { display: flex; }
 .placeholder-icon {
-  width: 72px; height: 72px;
+  width: 56px; height: 56px;
   background: var(--primary-soft);
   color: var(--primary-deep);
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  margin-bottom: 18px;
+  margin-bottom: 14px;
 }
-.placeholder-icon svg { width: 36px; height: 36px; stroke-width: 1.6; }
+.placeholder-icon svg { width: 28px; height: 28px; }
 .placeholder-title {
   font-family: 'Prompt', sans-serif;
-  font-size: 22px; font-weight: 600;
-  color: var(--text); margin-bottom: 8px;
+  font-size: 18px; font-weight: 600;
+  margin-bottom: 6px;
 }
-.placeholder-desc {
-  font-size: 15px; color: var(--text-muted);
-  max-width: 480px; margin-bottom: 14px;
-}
+.placeholder-desc { font-size: 14px; color: var(--text-muted); }
 .placeholder-code {
-  font-family: monospace; font-size: 13px;
-  color: var(--primary-deep);
+  font-family: monospace; font-size: 12px;
   background: rgba(255, 255, 255, 0.7);
-  padding: 4px 10px; border-radius: 6px;
-  border: 1px solid var(--primary-light);
-}
-.placeholder-meta {
-  font-family: 'Prompt', sans-serif;
-  font-size: 13px; color: var(--text-soft);
-  letter-spacing: 0.5px;
+  padding: 3px 8px; border-radius: 4px;
 }
 
-/* Wave divider */
-.banner-divider {
-  position: relative;
-  height: 60px;
-  margin-top: -60px;
-  z-index: 3;
-  pointer-events: none;
-}
-.banner-divider svg {
-  display: block;
-  width: 100%;
-  height: 100%;
+/* Wave divider — removed for compact layout */
+.banner-divider { display: none; }
+
+/* ============================
+   MAIN CONTENT (compact)
+   ============================ */
+.main-content {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 18px 24px 0;
 }
 
 /* ============================
-   MAIN CONTENT
+   CARDS GRID (compact)
    ============================ */
-.main-content {
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 40px 24px 0;
-  position: relative;
-}
-
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-  margin-bottom: 60px;
+  gap: 14px;
+  margin-bottom: 16px;
 }
 
 .card {
@@ -349,26 +259,26 @@ body {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 28px 26px;
+  padding: 14px 18px;
   text-decoration: none;
   color: inherit;
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  transition: all 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+  gap: 8px;
+  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(16px);
 }
 .card.visible { opacity: 1; transform: translateY(0); }
 .card::before {
   content: '';
   position: absolute;
   top: 0; right: 0;
-  width: 80px; height: 80px;
+  width: 70px; height: 70px;
   background: radial-gradient(circle at top right, var(--primary-soft) 0%, transparent 70%);
   opacity: 0;
-  transition: opacity 0.32s ease;
+  transition: opacity 0.28s ease;
   pointer-events: none;
 }
 .card::after {
@@ -379,11 +289,11 @@ body {
   background: linear-gradient(90deg, var(--primary), var(--primary-deep));
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .card:hover {
   border-color: var(--primary);
-  transform: translateY(-6px);
+  transform: translateY(-4px);
   box-shadow: var(--shadow-lg);
 }
 .card:hover::before { opacity: 1; }
@@ -394,128 +304,153 @@ body {
   transform: scale(1.08) rotate(-5deg);
 }
 .card:hover .card-arrow {
-  transform: translateX(6px);
+  transform: translateX(5px);
   color: var(--primary);
 }
 .card:hover .card-action { color: var(--primary-deep); }
 
 .card-icon {
-  width: 56px; height: 56px;
-  border-radius: 14px;
+  width: 44px; height: 44px;
+  border-radius: 11px;
   background: var(--primary-soft);
   color: var(--primary-deep);
   display: flex; align-items: center; justify-content: center;
-  transition: all 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative; z-index: 1;
 }
-.card-icon svg { width: 28px; height: 28px; stroke-width: 1.8; }
+.card-icon svg { width: 22px; height: 22px; stroke-width: 1.8; }
+
 .card-title {
   font-family: 'Prompt', sans-serif;
-  font-size: 18px; font-weight: 600;
+  font-size: 16px; font-weight: 600;
   color: var(--text); line-height: 1.3;
 }
 .card-desc {
-  font-size: 14px; color: var(--text-muted);
-  flex-grow: 1; line-height: 1.55;
+  font-size: 13px;
+  color: var(--text-muted);
+  flex-grow: 1;
+  line-height: 1.5;
 }
 .card-footer {
   display: flex; align-items: center; justify-content: space-between;
-  margin-top: 6px; padding-top: 14px;
+  margin-top: 2px; padding-top: 8px;
   border-top: 1px solid var(--border-light);
 }
 .card-action {
   font-family: 'Prompt', sans-serif;
-  font-size: 13px; font-weight: 500;
+  font-size: 12.5px; font-weight: 500;
   color: var(--text-muted);
-  letter-spacing: 0.3px;
-  transition: color 0.32s ease;
+  letter-spacing: 0.2px;
+  transition: color 0.28s ease;
 }
 .card-arrow {
   color: var(--text-soft);
-  transition: all 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
 }
 
-/* CONTACT */
+/* ============================
+   CONTACT (compact horizontal)
+   ============================ */
 .contact-section {
-  margin: 60px auto 80px;
-  max-width: 520px;
+  margin: 0 auto 18px;
+  max-width: 720px;
   opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.6s ease;
+  transform: translateY(16px);
+  transition: all 0.5s ease;
 }
 .contact-section.visible { opacity: 1; transform: translateY(0); }
+
 .contact-card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 36px 32px;
-  text-align: center;
+  padding: 12px 22px;
   position: relative;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 18px;
 }
 .contact-card::before {
   content: '';
   position: absolute;
-  top: 0; left: 50%;
-  transform: translateX(-50%);
-  width: 80px; height: 3px;
-  background: linear-gradient(90deg, var(--primary), var(--primary-deep));
-  border-radius: 0 0 3px 3px;
+  top: 0; left: 0; bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--primary), var(--primary-deep));
 }
 .contact-icon {
-  width: 64px; height: 64px;
-  margin: 0 auto 18px;
+  width: 44px; height: 44px;
   background: var(--primary-soft);
   color: var(--primary-deep);
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   transition: all 0.3s ease;
+  flex-shrink: 0;
 }
-.contact-icon svg { width: 30px; height: 30px; stroke-width: 2; }
+.contact-icon svg { width: 22px; height: 22px; stroke-width: 2; }
 .contact-card:hover .contact-icon {
   background: var(--primary);
   color: var(--surface);
-  transform: scale(1.05);
 }
+.contact-info {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  flex-grow: 1;
+}
+.contact-text { line-height: 1.3; }
 .contact-label {
   font-family: 'Prompt', sans-serif;
-  font-size: 13px; font-weight: 500;
+  font-size: 11px; font-weight: 500;
   color: var(--text-muted);
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
   text-transform: uppercase;
-  margin-bottom: 10px;
 }
 .contact-name {
   font-family: 'Prompt', sans-serif;
-  font-size: 20px; font-weight: 600;
+  font-size: 15px; font-weight: 600;
   color: var(--text);
-  margin-bottom: 14px;
+  margin-top: 2px;
 }
 .contact-phone {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-size: 15px; color: var(--text-muted);
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 14px; color: var(--text-muted);
   text-decoration: none;
-  padding: 8px 16px;
+  padding: 6px 14px;
   background: var(--bg);
   border-radius: 100px;
   transition: all 0.25s ease;
+  font-family: 'Prompt', sans-serif;
+  font-weight: 500;
+  margin-left: auto;
 }
 .contact-phone:hover {
   background: var(--primary-soft);
   color: var(--primary-deep);
 }
-.contact-phone svg { width: 16px; height: 16px; stroke-width: 2; }
+.contact-phone svg { width: 14px; height: 14px; stroke-width: 2; }
 
-/* RESPONSIVE */
+/* ============================
+   RESPONSIVE
+   ============================ */
 @media (max-width: 980px) {
   .grid { grid-template-columns: repeat(2, 1fr); }
+  .banner-stack { max-height: 200px; }
+  .banner-img { height: 200px; }
 }
 @media (max-width: 640px) {
-  .grid { grid-template-columns: 1fr; }
+  .grid { grid-template-columns: 1fr; gap: 14px; }
   .topbar-logo .subtitle-th { display: none; }
-  .topbar-meta { font-size: 12px; padding: 5px 10px; }
-  .contact-card { padding: 28px 22px; }
-  .banner-divider { height: 40px; margin-top: -40px; }
+  .topbar-meta { font-size: 11px; padding: 4px 9px; }
+  .banner-stack { max-height: 160px; }
+  .banner-img { height: 160px; }
+  .banner-divider { height: 24px; margin-top: -24px; }
+  .contact-card { flex-direction: column; gap: 12px; text-align: center; }
+  .contact-info { flex-direction: column; gap: 8px; text-align: center; }
+  .contact-phone { margin-left: 0; }
+  .main-content { padding: 18px 16px 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -533,74 +468,40 @@ body {
 </head>
 <body>
 
-<!-- TOPBAR -->
-<header class="topbar" id="topbar">
-  <div class="topbar-inner">
-    <a href="#" class="topbar-logo">
-      <img src="logo.png" alt="ตราสัญลักษณ์ ชก.151">
-      <div>
-        <div class="title-th">ชก. 151</div>
-        <div class="subtitle-th">หลักสูตรชำนาญการ รุ่นที่ 151</div>
-      </div>
-    </a>
-    <div class="topbar-meta">ปีงบประมาณ 2569</div>
-  </div>
-</header>
-
 <!-- BANNER -->
 <section class="banner-section">
   <div class="banner-stack">
-    <img class="banner-img" id="bannerImg" src="banner.png"
+    <img class="banner-img" id="bannerImg" src="banner.jpg"
          alt="โครงการพัฒนาศักยภาพการปฏิบัติงาน ระดับชำนาญการ ปีงบประมาณ 2569">
 
-    <!-- ANIMATED OVERLAY -->
     <div class="banner-overlay">
-
-      <!-- Sheen sweep -->
       <div class="sheen"></div>
-
-      <!-- Flowing curved lines (SVG paths) -->
-      <svg class="flow-lines" viewBox="0 0 1920 640" preserveAspectRatio="none">
-        <!-- Gold line - upper -->
-        <path class="flow-1" d="M -50,180 Q 360,80 720,200 T 1500,140 T 1970,200" />
-        <!-- Light blue line - middle -->
-        <path class="flow-2" d="M -50,360 Q 480,260 960,380 T 1970,340" />
-        <!-- Gold line - lower curve following bottom shape -->
-        <path class="flow-3" d="M -50,520 Q 480,580 960,520 T 1970,540" />
-        <!-- White accent line - diagonal -->
-        <path class="flow-4" d="M -50,80 Q 600,220 1200,160 T 1970,260" />
+      <svg class="flow-lines" viewBox="0 0 1920 280" preserveAspectRatio="none">
+        <path class="flow-1" d="M -50,75 Q 360,35 720,85 T 1500,60 T 1970,85" />
+        <path class="flow-2" d="M -50,160 Q 480,120 960,170 T 1970,150" />
+        <path class="flow-3" d="M -50,230 Q 480,255 960,230 T 1970,240" />
+        <path class="flow-4" d="M -50,35 Q 600,95 1200,70 T 1970,115" />
       </svg>
-
-      <!-- Floating golden particles -->
       <div class="particles" id="particles"></div>
-
-      <!-- Pulsing dots -->
-      <div class="pulse-dot" style="top: 18%; left: 42%;"></div>
-      <div class="pulse-dot" style="top: 65%; left: 22%; animation-delay: -1.2s;"></div>
+      <div class="pulse-dot" style="top: 22%; left: 42%;"></div>
+      <div class="pulse-dot" style="top: 70%; left: 22%; animation-delay: -1.2s;"></div>
       <div class="pulse-dot" style="top: 30%; left: 88%; animation-delay: -0.6s; width: 6px; height: 6px;"></div>
-
     </div>
   </div>
 
-  <!-- Fallback placeholder -->
   <div class="banner-placeholder" id="bannerPlaceholder">
     <div class="placeholder-icon">
       <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
       </svg>
     </div>
-    <div class="placeholder-title">พื้นที่สำหรับ Banner ของคุณ</div>
-    <div class="placeholder-desc">
-      วางไฟล์ <span class="placeholder-code">banner.png</span>
-      ในโฟลเดอร์เดียวกับ index.html
-    </div>
-    <div class="placeholder-meta">ขนาดแนะนำ 1920 × 500 px</div>
+    <div class="placeholder-title">พื้นที่สำหรับ Banner</div>
+    <div class="placeholder-desc">วาง <span class="placeholder-code">banner.jpg</span> ในโฟลเดอร์เดียวกับ index.html</div>
   </div>
 
-  <!-- Wave divider -->
   <div class="banner-divider">
-    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,30 C240,60 480,0 720,20 C960,40 1200,5 1440,30 L1440,60 L0,60 Z" fill="#F4F9FD"/>
+    <svg viewBox="0 0 1440 36" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,18 C240,36 480,0 720,12 C960,24 1200,3 1440,18 L1440,36 L0,36 Z" fill="#F4F9FD"/>
     </svg>
   </div>
 </section>
@@ -618,10 +519,10 @@ body {
         </svg>
       </div>
       <h2 class="card-title">รายละเอียดโครงการ</h2>
-      <p class="card-desc">ข้อมูลภาพรวม วัตถุประสงค์ กำหนดการ และโครงสร้างหลักสูตรอบรม</p>
+      <p class="card-desc">เอกสารที่เกี่ยวข้องกับโครงการ</p>
       <div class="card-footer">
         <span class="card-action">เปิดดูเอกสาร</span>
-        <svg class="card-arrow" width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+        <svg class="card-arrow" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
         </svg>
       </div>
@@ -635,10 +536,10 @@ body {
         </svg>
       </div>
       <h2 class="card-title">เอกสารประกอบการบรรยาย</h2>
-      <p class="card-desc">สไลด์ เอกสารแจก และไฟล์ประกอบการเรียนรู้จากวิทยากร</p>
+      <p class="card-desc">สไลด์และไฟล์ประกอบการบรรยายจากวิทยากร</p>
       <div class="card-footer">
-        <span class="card-action">เปิดดูเอกสาร</span>
-        <svg class="card-arrow" width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+        <span class="card-action">เปิดดูเอกสารและดาวน์โหลด</span>
+        <svg class="card-arrow" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
         </svg>
       </div>
@@ -652,10 +553,10 @@ body {
         </svg>
       </div>
       <h2 class="card-title">รูปภาพภายในโครงการ</h2>
-      <p class="card-desc">คลังภาพบรรยากาศ กิจกรรม และความทรงจำตลอดการอบรม</p>
+      <p class="card-desc">รวมภาพบรรยากาศและกิจกรรมตลอดการอบรม</p>
       <div class="card-footer">
         <span class="card-action">ดูคลังรูปภาพ</span>
-        <svg class="card-arrow" width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+        <svg class="card-arrow" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
         </svg>
       </div>
@@ -668,11 +569,11 @@ body {
           <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
         </svg>
       </div>
-      <h2 class="card-title">Infographic สรุปผลฯ</h2>
-      <p class="card-desc">สรุปผลการเรียนรู้และเนื้อหาสำคัญในรูปแบบภาพที่เข้าใจง่าย</p>
+      <h2 class="card-title">สรุปเนื้อหา (Infographic)</h2>
+      <p class="card-desc">ส่ง Infographic และสไลด์การบรรยาย</p>
       <div class="card-footer">
-        <span class="card-action">ดู Infographic</span>
-        <svg class="card-arrow" width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+        <span class="card-action">ส่งเอกสาร</span>
+        <svg class="card-arrow" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
         </svg>
       </div>
@@ -685,11 +586,11 @@ body {
           <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
         </svg>
       </div>
-      <h2 class="card-title">แบบฟอร์มต่างๆ</h2>
-      <p class="card-desc">รวมแบบฟอร์มที่จำเป็นสำหรับการอบรม ดาวน์โหลดไปใช้งานได้ทันที</p>
+      <h2 class="card-title">แบบฟอร์มที่เกี่ยวข้อง</h2>
+      <p class="card-desc">รวมแบบฟอร์มที่จำเป็นสำหรับการอบรม</p>
       <div class="card-footer">
-        <span class="card-action">ดาวน์โหลดฟอร์ม</span>
-        <svg class="card-arrow" width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+        <span class="card-action">ดาวน์โหลดแบบฟอร์ม</span>
+        <svg class="card-arrow" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
         </svg>
       </div>
@@ -703,10 +604,10 @@ body {
         </svg>
       </div>
       <h2 class="card-title">ส่งใบประกาศ e-Learning</h2>
-      <p class="card-desc">อัปโหลดใบประกาศนียบัตรหลังเรียนจบหลักสูตรออนไลน์</p>
+      <p class="card-desc">ระบบสำหรับอัปโหลดใบประกาศนียบัตรหลังจบหลักสูตรออนไลน์</p>
       <div class="card-footer">
-        <span class="card-action">ส่งใบประกาศ</span>
-        <svg class="card-arrow" width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+        <span class="card-action">อัปโหลดเอกสาร</span>
+        <svg class="card-arrow" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
         </svg>
       </div>
@@ -714,7 +615,7 @@ body {
 
   </main>
 
-  <!-- CONTACT -->
+  <!-- CONTACT (compact horizontal) -->
   <section class="contact-section">
     <div class="contact-card">
       <div class="contact-icon">
@@ -722,14 +623,18 @@ body {
           <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
         </svg>
       </div>
-      <div class="contact-label">เจ้าหน้าที่โครงการ</div>
-      <div class="contact-name">นายรังสรรค์ สินนา (เดียร์)</div>
-      <a href="tel:022718000" class="contact-phone">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-        </svg>
-        <span>02-271-8000 ต่อ 1733</span>
-      </a>
+      <div class="contact-info">
+        <div class="contact-text">
+          <div class="contact-label">เจ้าหน้าที่โครงการ</div>
+          <div class="contact-name">นายรังสรรค์ สินนา (เดียร์)</div>
+        </div>
+        <a href="tel:022718000" class="contact-phone">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+          </svg>
+          <span>02-271-8000 ต่อ 1733</span>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -739,15 +644,16 @@ body {
 // Generate floating particles
 (function() {
   const particles = document.getElementById('particles');
-  const count = 15;
+  if (!particles) return;
+  const count = 12;
   for (let i = 0; i < count; i++) {
     const p = document.createElement('div');
     p.className = 'particle';
     const left = Math.random() * 100;
-    const size = 2 + Math.random() * 4;
-    const duration = 8 + Math.random() * 8;
+    const size = 2 + Math.random() * 3;
+    const duration = 7 + Math.random() * 6;
     const delay = -Math.random() * duration;
-    const drift = (Math.random() - 0.5) * 100;
+    const drift = (Math.random() - 0.5) * 80;
     p.style.left = left + '%';
     p.style.width = size + 'px';
     p.style.height = size + 'px';
@@ -758,20 +664,16 @@ body {
   }
 })();
 
-// Banner image loader (handles race condition — image may already be loaded)
+// Banner loader (handles race condition)
 const bannerImg = document.getElementById('bannerImg');
 const bannerPlaceholder = document.getElementById('bannerPlaceholder');
-
-function handleBannerLoad() {
-  bannerImg.classList.add('loaded');
-}
+function handleBannerLoad() { bannerImg.classList.add('loaded'); }
 function handleBannerError() {
   bannerImg.remove();
   bannerPlaceholder.classList.add('show');
   const overlay = document.querySelector('.banner-overlay');
   if (overlay) overlay.style.display = 'none';
 }
-
 if (bannerImg.complete) {
   if (bannerImg.naturalWidth > 0) handleBannerLoad();
   else handleBannerError();
@@ -780,25 +682,18 @@ if (bannerImg.complete) {
   bannerImg.addEventListener('error', handleBannerError);
 }
 
-// Topbar scroll effect
-const topbar = document.getElementById('topbar');
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 30) topbar.classList.add('scrolled');
-  else topbar.classList.remove('scrolled');
-});
-
-// Scroll-triggered fade-in
+// Scroll fade-in
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
       const delay = entry.target.classList.contains('card')
-        ? Array.from(entry.target.parentElement.children).indexOf(entry.target) * 80
+        ? Array.from(entry.target.parentElement.children).indexOf(entry.target) * 60
         : 0;
       setTimeout(() => entry.target.classList.add('visible'), delay);
       observer.unobserve(entry.target);
     }
   });
-}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+}, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
 
 document.querySelectorAll('.card, .contact-section').forEach(el => observer.observe(el));
 </script>
